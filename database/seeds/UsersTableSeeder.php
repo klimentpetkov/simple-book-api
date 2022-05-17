@@ -1,6 +1,7 @@
 <?php
 
 use App\User;
+use App\Book;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -14,7 +15,7 @@ class UsersTableSeeder extends Seeder
     {
         factory(User::class, 50)->create()->each(function ($user) {
             if($user->isAuthor()){
-                $user->books()->save(factory(App\Book::class)->make());
+                $user->books()->save(factory(Book::class)->make());
             }
         });
     }
