@@ -12,4 +12,9 @@ class Book extends Model
     {
         return $this->belongsTo(User::class,'author_id','id');
     }
+
+    public function path()
+    {
+        return url('/books/' . $this->id);
+    }
 }

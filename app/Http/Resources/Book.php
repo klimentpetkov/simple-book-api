@@ -15,12 +15,17 @@ class Book extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'title' => $this->title,
-            'description' => $this->description,
-            'cover' => $this->cover,
-            'published_at' => $this->created_at,
-            'author' => User::make($this->author)
+            'data' => [
+                'id' => $this->id,
+                'title' => $this->title,
+                'description' => $this->description,
+                'cover' => $this->cover,
+                'published_at' => $this->created_at->format('m/d/Y'), //diffForHumans(),
+                'author' => User::make($this->author)
+            ],
+            'links' => [
+                'self' => $this->path(),
+            ]
         ];
     }
 }
