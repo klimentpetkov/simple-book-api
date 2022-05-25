@@ -60,14 +60,43 @@
                 </div>
 
                 <div class="relative pt-3">
+                    <label class="text-white" for="role">{{ __('messages.register.role.role') }}</label>
+                    <select class="
+                        form-select
+                        appearance-none
+                        block
+                        w-full
+                        px-3
+                        py-1.5
+                        text-base
+                        font-normal
+                        text-gray-700
+                        bg-white bg-clip-padding bg-no-repeat
+                        border border-solid border-gray-300
+                        rounded
+                        transition
+                        ease-in-out
+                        m-0
+                        focus:text-gray-700
+                        focus:bg-white
+                        focus:border-blue-600
+                        focus:outline-none"
+                        name="role"
+                        aria-label="User role">
+                            <option {{ old('role') == 0 ? 'selected' : '' }} value="0">{{ __('messages.register.role.reader') }}</option>
+                            <option {{ old('role') == 1 ? 'selected' : '' }} value="1">{{ __('messages.register.role.author') }}</option>
+                        </select>
+                </div>
+
+                <div class="relative pt-3">
                     <input
                         type="checkbox"
-                        name="is_author"
-                        id="author"
+                        name="receive_notifications"
+                        id="receive_notifications"
                         value='1'
-                        {{ old('is_author') ? 'checked' : '' }}>
+                        {{ old('receive_notifications') ? 'checked' : '' }}>
 
-                    <label class="text-white" for="author">{{ __('messages.author') }}</label>
+                    <label class="text-white" for="receive_notifications">{{ __('messages.register.receiveNotifications') }}</label>
                 </div>
 
                 <div class="relative pt-3">
