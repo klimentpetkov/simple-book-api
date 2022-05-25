@@ -65,13 +65,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $role = (int) request()->role;
+
         $data = [
             'name' => $data['name'],
             'email' => $data['email'],
-            'is_author' => (int) request()->role,
+            'is_author' => $role,
             'password' => Hash::make($data['password']),
             'api_token' => Str::random(32),
         ];
+
+
+        if(request()->has('receive_notifications') && !$role) {
+            $data['receive_notifications'] = request('receive_notifications');
+        }
 
         return User::create($data);
     }
