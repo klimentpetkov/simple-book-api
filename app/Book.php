@@ -39,7 +39,10 @@ class Book extends Model
 	        Log::info('Book Created Event:' . json_encode($book));
 
             Notification::send(
-                User::where('is_author', 0)->get(),
+                User::where([
+                    ['is_author', '=', 0],
+                    ['receive_notifications', '=', 1]
+                ])->get(),
                 new BookPublished($book)
             );
 	    });
