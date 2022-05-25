@@ -13,7 +13,6 @@ return [
     |
     */
     'app_name' => "Simple Book App",
-    'author' => "Author",
     'register' => [
         'signUp' => "Sign Up!",
         'enterInfo' => "Enter your information below",
@@ -23,7 +22,13 @@ return [
         'password' => "Password",
         'reEnterPassword' => "Re-enter Password",
         'confirm' => "Confirm",
-        'register' => "Register"
+        'register' => "Register",
+        'receiveNotifications' => "Receive notifications",
+        'role' => [
+            'role' => "Role",
+            'author' => "Author",
+            'reader' => "Reader"
+        ]
     ],
     'login' => [
         'login' => "Login",
@@ -52,5 +57,8 @@ return [
         'enterEmailToResetPassword' => "Enter your email to reset password",
         'email' => "E-mail",
         'sendResetEmail' => "Send Reset Email"
+    ],
+    'vue' => [
+        
     ]
 ];
