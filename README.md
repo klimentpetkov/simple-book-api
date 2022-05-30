@@ -1,8 +1,8 @@
-# Simple Book App
+## Simple Book App
 
-## Setup
+### Setup
 
-### Backend
+#### Backend
 ```bash
 composer install
 cp .env.example .env
@@ -27,18 +27,18 @@ For mass readers notifications to work run
 php artisan queue:work
 ```
 
-### Frontend:
+#### Frontend:
 ```bash
 npm install
 npm run dev
 ```
 
-## To start the app run
+### To start the app run
 ```bash
 php artisan serve
 ```
 
-## Functionality notes
+### Functionality notes
 Only author can do publish or delete a book.
 One author can't manipulate other author`s books
 All readers can only view.
