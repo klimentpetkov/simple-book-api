@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Book;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Resources\Book as BookResource;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 class BookController extends Controller
@@ -18,7 +19,7 @@ class BookController extends Controller
     {
         $this->authorize('viewAny', Book::class);
 
-        $books = Book::with('author')->paginate();
+        $books = Book::with('author')->paginate(10);
 
         return (BookResource::collection($books))
             ->response()
@@ -35,7 +36,16 @@ class BookController extends Controller
     {
         $this->authorize('create', Book::class);
 
-        $book = Book::create($request->validated());
+        $bookData = $request->validated();
+
+        $image = $bookData['image'];
+        $imageName = auth()->user()->id . '/' . $image->getClientOriginalName();
+        $image->storeAs('public/', $imageName);
+
+        $bookData = array_diff_key($bookData, array_flip(['image']));
+        $bookData['cover'] = '/storage/' . $imageName;
+
+        $book = Book::create($bookData);
 
         return (BookResource::make($book))
             ->response()
@@ -82,6 +92,12 @@ class BookController extends Controller
     public function destroy(Book $book)
     {
         $this->authorize('delete', $book);
+
+        $imagePath = str_replace('/storage', '', $book->cover);
+
+        if (Storage::disk('public')->exists($imagePath)) {
+            Storage::disk('public')->delete($imagePath);
+        }
 
         $book->delete();
 
