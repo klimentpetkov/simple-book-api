@@ -5,6 +5,11 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('/storage/{name}', 'ImageController')
+    ->where('name', '(.*)')
+    ->name('image.get');
+
 Route::view('/{any}', 'home')
     ->middleware('auth')
-    ->where('any', '.*');
+    ->where('any', '.*')
+    ->name('vue.routes');
