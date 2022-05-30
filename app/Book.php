@@ -19,13 +19,13 @@ class Book extends Model
     // Author relation
     public function author()
     {
-        return $this->belongsTo(User::class,'author_id','id');
+        return $this->belongsTo(User::class, 'author_id', 'id');
     }
 
     // A path to book resource
     public function path()
     {
-        return url('/books/' . $this->id);
+        return '/books/' . $this->id;
     }
 
     // Model events
@@ -33,7 +33,7 @@ class Book extends Model
 	    parent::boot();
 
         /**
-         * When a book is created a Users notifications are sent
+         * When a book is created a Users notifications are queued for sending
          */
 	    static::created(function($book) {
 	        Log::info('Book Created Event:' . json_encode($book));
