@@ -59,6 +59,13 @@ return [
         'sendResetEmail' => "Send Reset Email"
     ],
     'vue' => [
-        
+    ],
+    'imageController' => [
+        'noSuchFile' => "Such file ':name' doesn't exist!",
+        'readerCantUpload' => "Readers can't upload images for books!",
+        'uploadFile' => "Please upload file!"
+    ],
+    'authorRule' => [
+        'validation' => "Passed value has to be a valid Author ID. And to act as logged in User"
     ]
 ];
