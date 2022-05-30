@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use App\Traits\RestExceptionHandler;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {

@@ -5,6 +5,7 @@ namespace App\Traits;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 trait RestExceptionHandler
@@ -22,6 +23,9 @@ trait RestExceptionHandler
             case $this->isModelNotFoundException($e):
                 $result = $this->modelNotFound();
                 break;
+            case $this->isValidationException($e):
+                $result = $this->validationFailed($e);
+                break;
             default:
                 $result = $this->badRequest($e->getMessage());
         }
@@ -36,8 +40,20 @@ trait RestExceptionHandler
      * @param Exception $e
      * @return bool
      */
-    protected function isModelNotFoundException(Exception $e) {
+    protected function isModelNotFoundException(Exception $e)
+    {
         return $e instanceof ModelNotFoundException;
+    }
+
+    /**
+     * Assures it is a ValidationException
+     *
+     * @param Exception $e
+     * @return boolean
+     */
+    protected function isValidationException(Exception $e)
+    {
+        return $e instanceof ValidationException;
     }
 
     /**
@@ -47,7 +63,8 @@ trait RestExceptionHandler
      * @param int $statusCode
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function jsonResponse(string $message, $statusCode = Response::HTTP_NOT_FOUND) {
+    protected function jsonResponse(string $message, $statusCode = Response::HTTP_NOT_FOUND)
+    {
         return response()->json(
             [
                 'status' => false,
@@ -62,8 +79,25 @@ trait RestExceptionHandler
 
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function modelNotFound() {
+    protected function modelNotFound()
+    {
         return $this->jsonResponse('Record not found');
+    }
+
+    /**
+     * Returns json response for failed validation
+
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function validationFailed($e)
+    {
+        return response()->json(
+            [
+                'message' => 'The given data was invalid.' ,
+                'errors' => $e->errors()
+            ],
+            Response::HTTP_UNPROCESSABLE_ENTITY
+        );
     }
 
     /**
@@ -71,7 +105,8 @@ trait RestExceptionHandler
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    protected function badRequest($message) {
+    protected function badRequest($message)
+    {
         return $this->jsonResponse($message, Response::HTTP_BAD_REQUEST);
     }
 }
