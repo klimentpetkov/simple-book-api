@@ -4,33 +4,26 @@
             <div class="pl-6 bg-gray-200 w-48 h-screen border-r-2 border-gray-400">
                 <nav class="pt-4">
                     <router-link to="/">
-                        Books App
+                        <h1 class="text-blue-800 font-bold">Simple Book App</h1>
                     </router-link>
 
-                    <p class="pt-12 text-gray-500 text-xs uppercase font-bold">Books</p>
+                    <div v-if="user.is_author === 1">
+                        <p class="pt-12 text-gray-500 text-xs uppercase font-bold">Create</p>
 
-                    <router-link to="/books/publish" class="flex items-center py-2 hover:text-blue-600 text-sm">
-                        <svg viewBox="0 0 24 24" class="fill-current text-blue-600 w-5 h-5">
-                            <path d="M23.3 11.9c0 .9-.6 1.4-1.4 1.4h-8.5v8.5c0 .9-.6 1.4-1.4 1.4s-1.4-.6-1.4-1.4v-8.5H2c-.9 0-1.4-.6-1.4-1.4 0-.9.6-1.4 1.4-1.4h8.5V1.9c0-.9.6-1.4 1.4-1.4s1.4.6 1.4 1.4v8.5h8.5c.9 0 1.5.6 1.5 1.5z"/>
-                        </svg>
-                        <div class="tracking-wide pl-3"> Publish new</div>
-                    </router-link>
+                        <router-link to="/books/publish" class="flex items-center py-2 hover:text-blue-600 text-sm">
+                            <svg viewBox="0 0 24 24" class="fill-current text-blue-600 w-5 h-5">
+                                <path d="M23.3 11.9c0 .9-.6 1.4-1.4 1.4h-8.5v8.5c0 .9-.6 1.4-1.4 1.4s-1.4-.6-1.4-1.4v-8.5H2c-.9 0-1.4-.6-1.4-1.4 0-.9.6-1.4 1.4-1.4h8.5V1.9c0-.9.6-1.4 1.4-1.4s1.4.6 1.4 1.4v8.5h8.5c.9 0 1.5.6 1.5 1.5z"/>
+                            </svg>
+                            <div class="tracking-wide pl-3"> Publish new</div>
+                        </router-link>
+                    </div>
 
                     <p class="pt-12 text-gray-500 text-xs uppercase font-bold">General</p>
 
-                    <!-- router-link to="/contacts" class="flex items-center py-2 hover:text-blue-600 text-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="fill-current text-blue-600 w-5 h-5">
-                            <path class="st0" d="M20 2h-1V1c0-.6-.4-1-1-1s-1 .4-1 1v1h-4V1c0-.6-.4-1-1-1s-1 .4-1 1v1H7V1c0-.6-.4-1-1-1S5 .4 5 1v1H4C1.8 2 0 3.8 0 6v14c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4V6c0-2.2-1.8-4-4-4zM4 4h1v1c0 .6.4 1 1 1s1-.4 1-1V4h4v1c0 .6.4 1 1 1s1-.4 1-1V4h4v1c0 .6.4 1 1 1s1-.4 1-1V4h1c1.1 0 2 .9 2 2v2H2V6c0-1.1.9-2 2-2zm16 18H4c-1.1 0-2-.9-2-2V10h20v10c0 1.1-.9 2-2 2zM8 14c0 .6-.4 1-1 1H5c-.6 0-1-.4-1-1s.4-1 1-1h2c.6 0 1 .4 1 1zm6 0c0 .6-.4 1-1 1h-2c-.6 0-1-.4-1-1s.4-1 1-1h2c.6 0 1 .4 1 1zm6 0c0 .6-.4 1-1 1h-2c-.6 0-1-.4-1-1s.4-1 1-1h2c.6 0 1 .4 1 1zM8 18c0 .6-.4 1-1 1H5c-.6 0-1-.4-1-1s.4-1 1-1h2c.6 0 1 .4 1 1zm6 0c0 .6-.4 1-1 1h-2c-.6 0-1-.4-1-1s.4-1 1-1h2c.6 0 1 .4 1 1zm6 0c0 .6-.4 1-1 1h-2c-.6 0-1-.4-1-1s.4-1 1-1h2c.6 0 1 .4 1 1z"/>
-                        </svg>
-                        <div class="tracking-wide pl-3">Contacts</div>
-                    </router-link -->
-
-                    <!-- router-link to="/birthdays" class="flex items-center py-2 hover:text-blue-600 text-sm">
-                        <svg viewBox="0 0 24 24" class="fill-current text-blue-600 w-5 h-5">
-                            <path fill-rule="evenodd" d="M12.1 6.8c1.2 0 2.1-1 2.1-2.1 0-.4-.1-.8-.3-1.1L12.1.5l-1.8 3.1c-.2.3-.3.6-.3 1 0 1.2 1 2.2 2.1 2.2zm6.4 3.1h-5.3V7.8h-2.1v2.1H5.8c-1.8 0-3.2 1.4-3.2 3.2v9.5c0 .6.5 1.1 1.1 1.1h16.9c.6 0 1.1-.5 1.1-1.1v-9.5c0-1.8-1.5-3.2-3.2-3.2zm1 11.7H4.7v-3.2c1 0 1.9-.4 2.5-1.1l1.2-1.1 1.1 1.1c1.4 1.4 3.8 1.4 5.2 0l1.1-1.1 1.1 1.1c.7.7 1.6 1.1 2.5 1.1v3.2h.1zm0-4.8c-.5 0-1-.2-1.4-.6l-2.3-2.3-2.3 2.3c-.8.8-2.1.8-2.9 0l-2.3-2.3L6 16.2c-.4.4-.9.6-1.4.6v-3.7c0-.6.5-1.1 1.1-1.1h12.7c.6 0 1.1.5 1.1 1.1v3.7z" clip-rule="evenodd"/>
-                        </svg>
-                        <div class="tracking-wide pl-3">Birthdays</div>
-                    </router-link -->
+                    <router-link to="/books" class="flex items-center py-2 hover:text-blue-600 text-sm">
+                        <span class="text-blue-600 font-bold text-lg">[ | ]</span>
+                        <div class="tracking-wide pl-3">Books</div>
+                    </router-link>
 
                     <p class="pt-12 text-gray-500 text-xs uppercase font-bold">Settings</p>
 
@@ -49,8 +42,7 @@
                     </div>
 
                     <div class="flex items-center">
-                        <!-- : name = "user.name" -->
-                        <UserCircle />
+                        <UserCircle :name="user.name" />
                     </div>
                 </div>
                 <div class="flex flex-col overflow-y-hidden flex-1">
@@ -62,8 +54,7 @@
 </template>
 
 <script>
-import UserCircle from './ui/UserCircle';
-// import SearchBar from '../components/SearchBar';
+import UserCircle from './UserCircle';
 
 export default {
     name: "App",
@@ -72,9 +63,14 @@ export default {
         'user'
     ],
 
+    provide() {
+        return {
+            user: this.user
+        }
+    },
+
     components: {
-        UserCircle //,
-        // SearchBar
+        UserCircle
     },
 
     created() {
@@ -83,13 +79,20 @@ export default {
         window.axios.interceptors.request.use(
             (config) => {
                 if (config.method === 'get') {
-                    config.url = config.url + '?api_token=' + this.user.api_token;
+                    let token = 'api_token=' + this.user.api_token;
+                    const glue = config.url.includes('?') ? '&' : '?';
+                    config.url = config.url + glue + token;
                 } else {
-                    config.data = {
-                        ...config.data,
-                        api_token: this.user.api_token
-                    };
+                    if (config.data instanceof FormData) {
+                        config.data.append('api_token', this.user.api_token);
+                    } else {
+                        config.data = {
+                            ...config.data,
+                            api_token: this.user.api_token
+                        };
+                    }
                 }
+
                 return config;
             }
         )
@@ -103,11 +106,13 @@ export default {
 
     watch: {
         $route(to, from) {
-            this.title = to.meta.title;
+            this.title = to.meta.title
+                       ? to.meta.title
+                       : "Home";
         },
 
         title() {
-            document.title = this.title + ' | Jot - The SPA App'
+            document.title = (this.title ? this.title : 'Home') + ' | Simple Book App';
         }
     }
 }

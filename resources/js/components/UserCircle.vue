@@ -14,7 +14,11 @@ export default {
 
     computed: {
         userCircle: function () {
-            return 'AA'; // this.name.match(/[A-Z]/g).slice(0, 2).join('');
+            let names = this.name.split(' ');
+
+            return  names.length === 1
+                    ? names[0].slice(0, 2).toUpperCase()
+                    : (names[0][0] + names[1][0]).toUpperCase();
         }
     }
 }
