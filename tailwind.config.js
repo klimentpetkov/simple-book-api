@@ -1,4 +1,8 @@
 module.exports = {
+  content: [
+    './resources/**/*.blade.php',
+    './resources/**/*.vue'
+  ],
   theme: {
     extend: {
       width: {
@@ -6,6 +10,9 @@ module.exports = {
       }
     }
   },
-  variants: {},
+  variants: {
+    opacity: ['disabled'],
+    cursor: ['disabled'],
+  },
   plugins: []
 }
