@@ -28,7 +28,9 @@ class Author implements Rule
     {
         $user = User::find($value);
 
-        return $user ? $user->is_author == 1 : false;
+        return $user
+                ? $user->is_author === 1 && auth()->user()->id === $user->id
+                : false;
     }
 
     /**
@@ -38,6 +40,6 @@ class Author implements Rule
      */
     public function message()
     {
-        return 'Passed value has to be a valid Author ID.';
+        return trans('messages.authorRule.validation');
     }
 }

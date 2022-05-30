@@ -6,6 +6,7 @@ use App\Rules\Author;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class StoreBookRequest extends FormRequest
@@ -36,15 +37,7 @@ class StoreBookRequest extends FormRequest
                 'exists:users,id',
                 new Author
             ],
+            'image' => 'required|image|mimes:jpeg,png|max:2048',
         ];
-    }
-
-    public function failedValidation(Validator $validator)
-    {
-        throw new HttpResponseException(response()->json([
-            'success'   => false,
-            'message'   => 'Validation errors',
-            'data'      => $validator->errors()
-          ], Response::HTTP_BAD_REQUEST));
     }
 }
