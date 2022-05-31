@@ -1,5 +1,12 @@
 ## Simple Book App
 
+### Tech stack
+
+1. Laravel 6
+2. Vue.js 2
+3. Axios
+3. Tailwind css
+
 ### Setup
 
 #### Backend
