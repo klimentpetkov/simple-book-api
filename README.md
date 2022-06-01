@@ -48,5 +48,7 @@ php artisan serve
 
 ### Functionality notes
 Only author can do publish or delete a book.
-One author can't manipulate other author`s books
+
+One author can't manipulate other author`s books.
+
 All readers can only view.
