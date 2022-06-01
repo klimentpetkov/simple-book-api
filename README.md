@@ -18,6 +18,7 @@ php artisan key:generate
 Into ```.env``` file enter
 DB credentials
 Mail Settings for e.g. mailtrap
+Set -> QUEUE_CONNECTION=database
 
 ```bash
 php artisan migrate
